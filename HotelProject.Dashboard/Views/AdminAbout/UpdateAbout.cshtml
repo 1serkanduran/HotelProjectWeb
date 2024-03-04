@@ -1,0 +1,42 @@
+﻿@model UpdateAboutViewModel 
+@{
+    ViewData["Title"] = "UpdateAbout";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div class="card mb-4">
+    <h5 class="card-header">Hakkımızda Güncelle</h5>
+    <div class="card-body">
+        <form method="post">
+            <div class="mb-3">
+                <input type="hidden" class="form-control" asp-for="AboutID" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-fullname">Başlık 1</label>
+                <input type="text" class="form-control" placeholder="Birinci Başlık" asp-for="Title1" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-company">Başlık 2</label>
+                <input type="text" class="form-control" placeholder="İkinci Başlık" asp-for="Title2" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-company">İçerik</label>
+                <textarea class="form-control" placeholder="Açıklama" asp-for="Content" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-company">Oda Sayısı</label>
+                <input type="text" class="form-control" placeholder="Oda Sayısı" asp-for="RoomCount" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-company">Personel Sayısı</label>
+                <input type="text" class="form-control" placeholder="Personel Sayısı" asp-for="StaffCount" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-company">Müşteri Sayısı</label>
+                <input type="text" class="form-control" placeholder="Müşteri Sayısı" asp-for="CustomerCount" />
+            </div>
+            <button type="submit" class="btn btn-primary">Güncelle</button>
+        </form>
+    </div>
+</div>
+

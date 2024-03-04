@@ -1,0 +1,27 @@
+﻿@model UpdateServiceViewModel
+@{
+    ViewData["Title"] = "UpdateService";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div class="card mb-4">
+    <h5 class="card-header">Servis Ekle</h5>
+    <div class="card-body">
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-fullname">İkon Ekle</label>
+                <input type="text" class="form-control" placeholder="İkon" asp-for="ServiceIcon" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-company">Bşalık</label>
+                <input type="text" class="form-control" placeholder="Title" asp-for="Title" />
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Açıklama</label>
+                <textarea class="form-control" asp-for="Description" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn rounded-pill btn-primary waves-effect waves-light">Güncelle</button>
+        </form>
+    </div>
+</div>
+

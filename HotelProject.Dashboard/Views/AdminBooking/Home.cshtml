@@ -1,0 +1,130 @@
+﻿@model List<BookingViewModel>
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <h5 class="card-header">Rezervasyonlar</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table" id="bookingTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Misafir</th>
+                    <th>Giriş Tarihi</th>
+                    <th>Çıkış Tarihi</th>
+                    <th>Durum</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.BookingID</td>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>@(((DateTime)item.Checkin).ToString("dd-MMM-yyyy"))</td>
+                        <td>@(((DateTime)item.Checkout).ToString("dd-MMM-yyyy"))</td>
+                        <td>
+                            <span class="badge bg-label-primary me-1">@item.Status</span>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                    <i class="ti ti-dots-vertical"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item onayla" data-booking-id="@item.BookingID">
+                                        <i class="ti ti-pencil me-1"></i>Onayla
+                                    </a>
+                                    <a class="dropdown-item iptal" data-booking-id="@item.BookingID">
+                                        <i class="ti ti-pencil me-1"></i>İptal Et
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .bg-label-primary {
+            background-color: blue;
+        }
+
+        .bg-label-success {
+            background-color: green;
+        }
+
+        .bg-label-danger {
+            background-color: red;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            // Sayfa yüklendiğinde, her span elementinin arka plan rengini kontrol et
+            $(".badge").each(function () {
+                var bookingId = $(this).closest("tr").find(".onayla, .iptal").data("booking-id");
+                var status = localStorage.getItem("bookingStatus_" + bookingId);
+                if (status) {
+                    $(this).removeClass("bg-label-primary bg-label-success bg-label-danger").addClass(status).text(status === "bg-label-success" ? "Onaylandı" : "İptal Edildi");
+                }
+            });
+
+            $(".onayla").click(function () {
+                var bookingId = $(this).data("booking-id");
+                onayla(bookingId);
+            });
+
+            $(".iptal").click(function () {
+                var bookingId = $(this).data("booking-id");
+                iptal(bookingId);
+            });
+        });
+
+        function onayla(bookingId) {
+            $.ajax({
+                url: '/AdminBooking/Onayla/' + bookingId,
+                type: 'POST',
+                success: function (response) {
+                    $(".onayla[data-booking-id='" + bookingId + "']").closest("tr").find(".badge").removeClass("bg-label-primary bg-label-danger").addClass("bg-label-success").text("Onaylandı");
+                    // Yapılan değişiklikleri localStorage'a kaydet
+                    localStorage.setItem("bookingStatus_" + bookingId, "bg-label-success");
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+
+        function iptal(bookingId) {
+            $.ajax({
+                url: '/AdminBooking/Iptal/' + bookingId,
+                type: 'POST',
+                success: function (response) {
+                    $(".iptal[data-booking-id='" + bookingId + "']").closest("tr").find(".badge").removeClass("bg-label-primary bg-label-success").addClass("bg-label-danger").text("İptal Edildi");
+                    // Yapılan değişiklikleri localStorage'a kaydet
+                    localStorage.setItem("bookingStatus_" + bookingId, "bg-label-danger");
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+    </script>
+}
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+﻿@model List<AboutViewModel>
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<!-- Basic Bootstrap Table -->
+<div class="card">
+    <h5 class="card-header">Hakkımızda</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Başlık 1</th>
+                    <th>Başlık 2</th>
+                    <th>İçerik</th>
+                    <th>Oda Sayısı</th>
+                    <th>Personel Sayısı</th>
+                    <th>Müşreri Sayısı</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Title1</td>
+                        <td>
+                            @item.Title2
+                        </td>
+                        <td>@item.Content</td>
+                        <td>@item.RoomCount</td>
+                        <td>@item.StaffCount</td>
+                        <td>@item.CustomerCount</td>
+                        <td><a href="/AdminAbout/UpdateAbout/@item.AboutID" class="btn rounded-pill btn-outline-success waves-effect">Güncelle</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<br />
+@*<a href="/Staff/AddAbout/" class="btn rounded-pill btn-primary waves-effect waves-light">Yeni Ekle</a>*@
+<!--/ Basic Bootstrap Table -->

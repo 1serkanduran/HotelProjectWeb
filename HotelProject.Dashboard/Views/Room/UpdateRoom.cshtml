@@ -1,0 +1,51 @@
+﻿@model UpdateRoomViewModel
+@{
+    ViewData["Title"] = "UpdateRoom";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div class="card mb-4">
+    <h5 class="card-header">Oda Güncelle</h5>
+    <div class="card-body">
+        <form method="post">
+            <div class="mb-3">
+                <input type="hidden" class="form-control" asp-for="RoomID" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-fullname">Oda Numarası</label>
+                <input type="text" class="form-control" placeholder="Oda Numarası" asp-for="RoomNumber" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-fullname">Oda Fotoğrafı</label>
+                <input type="text" class="form-control" placeholder="Fotoğraf Ekle" asp-for="RoomCoverImage" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-fullname">Fiyat₺</label>
+                <input type="text" class="form-control" placeholder="₺" asp-for="Price" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-fullname">Banyo Sayısı</label>
+                <input type="text" class="form-control" placeholder="Banyo Sayısı" asp-for="BathCount" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-fullname">Yatak Sayısı</label>
+                <input type="text" class="form-control" placeholder="Yatak Sayısı" asp-for="BathCount" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-company">Başlık</label>
+                <input type="text" class="form-control" placeholder="Başlık" asp-for="Title" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-company">Wifi</label>
+                <input type="text" class="form-control" placeholder="Wifi Var Mı?" asp-for="Wifi" />
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Açıklama</label>
+                <textarea class="form-control" placeholder="Açıklama" asp-for="Description" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn rounded-pill btn-primary waves-effect waves-light">Kaydet</button>
+        </form>
+    </div>
+</div>
+
+

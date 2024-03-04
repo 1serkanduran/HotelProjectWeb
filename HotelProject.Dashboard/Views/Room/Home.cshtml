@@ -1,0 +1,48 @@
+﻿@model List<RoomViewModel>
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<!-- Responsive Table -->
+<div class="card">
+    <h5 class="card-header">Oda Listesi</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table">
+            <thead>
+                <tr class="text-nowrap">
+                    <th>Oda Numarası</th>
+                    <th>Fotoğraf</th>
+                    <th>Oda Fiyatı</th>
+                    <th>Başlık</th>
+                    <th>Yatak Sayısı</th>
+                    <th>Banyo Sayısı</th>
+                    <th>Wifi</th>
+                    <th>Açıklama</th>
+                    <th>Güncelle</th>
+                    <th>Sil</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.RoomNumber</td>
+                        <td>@item.RoomCoverImage</td>
+                        <td>@item.Price</td>
+                        <td>@item.Title</td>
+                        <td>@item.BedCount</td>
+                        <td>@item.BathCount</td>
+                        <td>@item.Wifi</td>
+                        <td>@item.Description</td>
+                        <td><a href="/Room/UpdateRoom/@item.RoomID" class="btn rounded-pill btn-outline-success waves-effect">Güncelle</a></td>
+                        <td><a href="/Room/DeleteRoom/@item.RoomID" class="btn rounded-pill btn-outline-danger waves-effect">Sil</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--/ Responsive Table -->
+<br />
+<a href="/Room/AddRoom/" class="btn rounded-pill btn-primary waves-effect waves-light">Yeni Oda Ekle</a>

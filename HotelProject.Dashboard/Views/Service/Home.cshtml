@@ -1,0 +1,51 @@
+﻿@model List<ServiceViewModel>
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<!-- Basic Bootstrap Table -->
+<div class="card">
+    <h5 class="card-header">Servisler</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Servis İkon</th>
+                    <th>Title</th>
+                    <th>Açıklama</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <span class="fw-medium">@item.ServiceIcon</span>
+                        </td>
+                        <td>@item.Title</td>
+                        <td>
+                            @item.Description
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                    <i class="ti ti-dots-vertical"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="/Service/UpdateService/@item.ServiceID"><i class="ti ti-pencil me-1"></i> Düzenle</a>
+                                    <a class="dropdown-item" href="/Service/DeleteService/@item.ServiceID"><i class="ti ti-pencil me-1"></i> Sil</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<br />
+<a href="/Service/AddService/" class="btn rounded-pill btn-primary waves-effect waves-light">Yeni Servis Ekle</a>
+<!--/ Basic Bootstrap Table -->
+

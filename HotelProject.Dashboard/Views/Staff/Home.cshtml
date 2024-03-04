@@ -1,0 +1,61 @@
+﻿@model List<StaffViewModel>
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<!-- Basic Bootstrap Table -->
+<div class="card">
+    <h5 class="card-header">Personeller</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Personel Numarası</th>
+                    <th>Adı Soyadı</th>
+                    <th>Title</th>
+                    <th>Durumu</th>
+                    <th>Sosyal Medya 1</th>
+                    <th>Sosyal Medya 2</th>
+                    <th>Sosyal Medya 3</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <span class="fw-medium">@item.StaffID</span>
+                        </td>
+                        <td>@item.Name</td>
+                        <td>
+                            @item.Title
+                        </td>
+                        <td>
+                            <span class="badge bg-label-primary me-1">Active</span>
+                        </td>
+                        <td>@item.SocialMedia1</td>
+                        <td>@item.SocialMedia2</td>
+                        <td>@item.SocialMedia3</td>
+                        <td>
+                            <div class="dropdown">
+                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                    <i class="ti ti-dots-vertical"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="/Staff/UpdateStaff/@item.StaffID"><i class="ti ti-pencil me-1"></i> Düzenle</a>
+                                    <a class="dropdown-item" href="/Staff/DeleteStaff/@item.StaffID"><i class="ti ti-pencil me-1"></i> Sil</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<br />
+<a href="/Staff/AddStaff/" class="btn rounded-pill btn-primary waves-effect waves-light">Yeni Personel Girişi</a>
+<!--/ Basic Bootstrap Table -->
+

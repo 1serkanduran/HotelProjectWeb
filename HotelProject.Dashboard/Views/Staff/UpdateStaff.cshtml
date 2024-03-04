@@ -1,0 +1,36 @@
+﻿@model UpdateStaffViewModel
+@{
+    ViewData["Title"] = "UpdateStaff";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+<div class="card mb-4">
+    <h5 class="card-header">Personel Güncelle</h5>
+    <div class="card-body">
+        <form method="post">
+            <div class="mb-3">
+                <input type="hidden" class="form-control" asp-for="StaffID" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-fullname">Personel Adı Soyadı</label>
+                <input type="text" class="form-control" placeholder="İsim Soyisim" asp-for="Name" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-company">Personel Unvanı</label>
+                <input type="text" class="form-control" placeholder="Ünvan" asp-for="Title" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-company">Sosyal Medya 1</label>
+                <input type="text" class="form-control" placeholder="Sosyal Medya" asp-for="SocialMedia1" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-company">Sosyal Medya 2</label>
+                <input type="text" class="form-control" placeholder="Sosyal Medya" asp-for="SocialMedia2" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-company">Sosyal Medya 3</label>
+                <input type="text" class="form-control" placeholder="Sosyal Medya" asp-for="SocialMedia3" />
+            </div>
+            <button type="submit" class="btn btn-primary">Güncelle</button>
+        </form>
+    </div>
+</div>
