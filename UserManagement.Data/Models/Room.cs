@@ -18,8 +18,7 @@ namespace UserManagement.Data.Models
         public string BedCount { get; set; }
         public string BathCount { get; set; }
         public string Wifi { get; set; }
-        [StringLength(50)]
         public string Description { get; set; }
-        public bool Status { get; set; }
+        //public bool Status { get; set; }
     }
 }
